@@ -1,4 +1,4 @@
-package tech.bassoum.ebulletin_mvp.controller;
+package tech.bassoum.ebulletin_mvp.api;
 
 import org.springframework.web.bind.annotation.*;
 import tech.bassoum.ebulletin_mvp.dto.MatiereDTO;

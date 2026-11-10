@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Bulletin - Tableau de bord</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-950 text-gray-100 min-h-screen font-sans">
+
+<!-- Header -->
+<header class="border-b border-gray-800 bg-gray-900/50 backdrop-blur-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+        <h1 class="text-xl font-bold tracking-wider text-emerald-400">E-BULLETIN <span class="text-xs text-gray-400 font-normal">MVP</span></h1>
+        <span class="text-sm bg-emerald-950 text-emerald-300 px-3 py-1 rounded-full border border-emerald-800">Système Actif</span>
+    </div>
+</header>
+
+<!-- Main Content -->
+<main class="max-w-7xl mx-auto px-6 py-10 space-y-10">
+
+    <!-- Section : Liste des Classes -->
+    <section class="bg-gray-900 border border-gray-800 rounded-2xl p-6 shadow-xl">
+        <div class="flex justify-between items-center mb-6">
+            <h2 class="text-lg font-semibold text-gray-200">Classes enregistrées</h2>
+        </div>
+        <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+                <thead>
+                <tr class="border-b border-gray-800 text-gray-400 text-sm">
+                    <th class="py-3 px-4">ID</th>
+                    <th class="py-3 px-4">Nom de la Classe</th>
+                    <th class="py-3 px-4">Niveau</th>
+                    <th class="py-3 px-4">Année Scolaire</th>
+                </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-800/60 text-sm">
+                <tr th:each="classe : ${classes}" class="hover:bg-gray-800/40 transition">
+                    <td class="py-3 px-4 text-gray-400" th:text="${classe.id}">1</td>
+                    <td class="py-3 px-4 font-medium text-gray-200" th:text="${classe.nom}">Terminale D</td>
+                    <td class="py-3 px-4 text-gray-300" th:text="${classe.niveau}">Terminale</td>
+                    <td class="py-3 px-4 text-gray-400" th:text="${classe.anneeScolaire}">2025-2026</td>
+                </tr>
+                <tr th:if="${#lists.isEmpty(classes)}">
+                    <td colspan="4" class="text-center py-4 text-gray-500">Aucune classe enregistrée pour le moment.</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Section : Liste des Élèves -->
+    <section class="bg-gray-900 border border-gray-800 rounded-2xl p-6 shadow-xl">
+        <div class="flex justify-between items-center mb-6">
+            <h2 class="text-lg font-semibold text-gray-200">Élèves inscrits</h2>
+        </div>
+        <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+                <thead>
+                <tr class="border-b border-gray-800 text-gray-400 text-sm">
+                    <th class="py-3 px-4">N° Étudiant</th>
+                    <th class="py-3 px-4">Nom & Prénom</th>
+                    <th class="py-3 px-4">Email</th>
+                    <th class="py-3 px-4">Classe</th>
+                </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-800/60 text-sm">
+                <tr th:each="eleve : ${eleves}" class="hover:bg-gray-800/40 transition">
+                    <td class="py-3 px-4 text-emerald-400 font-mono" th:text="${eleve.numeroEtudiant}">ETU001</td>
+                    <td class="py-3 px-4 font-medium text-gray-200" th:text="${eleve.nom + ' ' + eleve.prenom}">Bassoum Ibrahim</td>
+                    <td class="py-3 px-4 text-gray-400" th:text="${eleve.email}">ibrahim@test.com</td>
+                    <td class="py-3 px-4">
+                                <span class="bg-gray-800 text-gray-300 px-2.5 py-1 rounded-md text-xs border border-gray-700"
+                                      th:text="${eleve.classe != null ? eleve.classe.nom : 'Aucune classe'}">Terminale D</span>
+                    </td>
+                </tr>
+                <tr th:if="${#lists.isEmpty(eleves)}">
+                    <td colspan="4" class="text-center py-4 text-gray-500">Aucun élève enregistré pour le moment.</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+</main>
+
+</body>
+</html>
