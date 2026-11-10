@@ -1,6 +1,7 @@
 package tech.bassoum.ebulletin_mvp.controller;
 
 import org.springframework.web.bind.annotation.*;
+import tech.bassoum.ebulletin_mvp.dto.NoteResponseDTO;
 import tech.bassoum.ebulletin_mvp.model.Note;
 import tech.bassoum.ebulletin_mvp.service.BulletinService;
 
@@ -16,7 +17,7 @@ public class BulletinController {
 
     // Route pour ajouter une note et mettre à jour le bulletin via une requête HTTP POST
     @PostMapping("/ajouter-note")
-    public Note ajouterNote(
+    public NoteResponseDTO ajouterNote(
             @RequestParam Long eleveId,
             @RequestParam Long matiereId,
             @RequestParam Float valeur,
@@ -24,7 +25,7 @@ public class BulletinController {
             @RequestParam String trimestre,
             @RequestParam String anneeScolaire
     ) {
-        return bulletinService.ajouterNoteEtMettreAJourBulletin(
+        return bulletinService.ajouterNoteEtMettreAJourBulletinDTO(
                 eleveId, matiereId, valeur, type, trimestre, anneeScolaire
         );
     }
