@@ -19,4 +19,8 @@ public class Enseignant extends Utilisateur {
 
     @OneToMany(mappedBy = "enseignant")
     private List<Note> notesSaisies = new ArrayList<>();
+
+    @OneToMany(mappedBy = "enseignant")
+    private List<Matiere> matieres = new ArrayList<>();
+
 }

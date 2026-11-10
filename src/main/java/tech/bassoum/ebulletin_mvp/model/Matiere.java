@@ -18,4 +18,9 @@ public class Matiere {
 
     private String nom;
     private float coefficient;
+
+    @ManyToOne
+    @JoinColumn(name = "enseignant_id")
+    private Enseignant enseignant;
+
 }
